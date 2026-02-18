@@ -5,7 +5,7 @@
     height: calc(80vh - 5rem);
     /* Împingem secțiunea în jos cu exact înălțimea navbar-ului */
     margin-top: 5rem; 
-    overflow: hidden;
+    /*overflow: hidden;*/
     background: #0F172A;
 }
 
@@ -151,4 +151,209 @@
     color: #0F172A;
     box-shadow: 0 0 20px rgba(167, 243, 208, 0.3);
     transform: translateY(-3px);
+}
+
+
+/* --- OVERLAP GRID ACTUALIZAT --- */
+.hero-overlap-grid {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    /* Pe desktop îl împingem în jos ca să iasă din hero */
+    transform: translate(-50%, 75%); 
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 90%;
+    max-width: 80rem;
+    z-index: 20;
+    gap: 0; /* Fără spații */
+    
+    /* Umbră generală pentru tot blocul */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-radius: 1rem;
+    background: #0B1221; /* Fundal de siguranță */
+}
+
+/* --- CARD CONTAINER --- */
+.overlap-item {
+    position: relative;
+    aspect-ratio: 1 / 1.1;
+    overflow: hidden; /* Esențial pentru crop */
+    background: #0B1221;
+    
+    /* Bordură fină transparentă */
+    border: 1px solid rgba(167, 243, 208, 0.1);
+    /* Margine negativă pentru a suprapune bordurile duble (să nu fie linia groasă) */
+    margin-left: -1px; 
+    
+    /* OPTIMIZĂRI GPU & RENDERING (Rezolvă bug-urile vizuale) */
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    
+    /* Tranziție pentru z-index */
+    transition: z-index 0s linear 0.1s; 
+    z-index: 1;
+}
+
+/* --- ROTUNJIRE EXTREMITĂȚI DESKTOP (Stânga - Dreapta) --- */
+.overlap-item:first-child {
+    border-radius: 1rem 0 0 1rem;
+    margin-left: 0; /* Primul nu are nevoie de margine negativă */
+}
+
+.overlap-item:last-child {
+    border-radius: 0 1rem 1rem 0;
+}
+
+/* --- FUNDAL IMAGINE --- */
+.overlap-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+}
+
+/* --- OVERLAY CULOARE --- */
+.overlap-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--overlay-color);
+    mix-blend-mode: multiply;
+    transition: opacity 0.4s ease;
+    z-index: 2; /* Peste imagine */
+}
+
+/* --- CONȚINUT --- */
+.overlap-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem 1rem;
+    z-index: 3; /* Peste overlay */
+    align-items: center;
+}
+
+/* --- ICONIȚE --- */
+.overlap-icon {
+    width: 4.2rem;
+    height: 4.2rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+    margin-top: 0.5rem;
+}
+
+/* --- TEXTE --- */
+.overlap-details p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.15rem;
+    color: #F8FAFC; /* Alb pur */
+    text-align: center;
+    line-height: 1.8rem;
+    margin: 0.5rem 0;
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.overlap-content h3 {
+    margin: 0;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.2rem;
+    color: #F8FAFC; /* Alb pur */
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* --- HOVER EFECTE (FIX BUG MIJLOC) --- */
+.overlap-item:hover {
+    z-index: 50; /* Aducem elementul mult în față la hover */
+    border-color: transparent; /* Ascundem bordura pentru aspect curat */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Adăugăm umbră să se deosebească */
+    transition: z-index 0s; /* Instantaneu */
+}
+
+.overlap-item:hover .overlap-bg {
+    transform: scale(1.08);
+    opacity: 1;
+}
+
+.overlap-item:hover::before {
+    opacity: 1;
+    background: rgba(15, 23, 42, 0.7);
+}
+
+
+/* --- RESPONSIVE MOBILE (VERTICAL & FĂRĂ SCROLL) --- */
+@media (max-width: 48rem) {
+    .hero-overlap-grid {
+        /* Transformăm în coloană unică */
+        grid-template-columns: 1fr; 
+        
+        /* Ajustăm poziția: mai sus puțin ca să nu fie spațiu gol imens */
+        position: relative; 
+        bottom: auto;
+        left: auto;
+        transform: none; /* Anulăm centrarea absolută complexă */
+        margin: -5rem auto 2rem auto; /* Margine negativă sus pentru a intra peste Hero */
+        
+        width: 90%; /* Siguranță să nu iasă din ecran */
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .overlap-item {
+        /* Aspect Ratio mai mic pe mobil ca să nu fie foarte înalte */
+        aspect-ratio: auto; 
+        height: 18rem; /* Înălțime fixă rezonabilă */
+        margin-left: 0; /* Resetăm marginea negativă de desktop */
+        margin-top: -1px; /* Folosim margine negativă pe verticală pentru a lipi bordurile */
+        
+        /* Resetăm rotunjirea */
+        border-radius: 0; 
+    }
+
+    /* --- ROTUNJIRE EXTREMITĂȚI MOBILE (Sus - Jos) --- */
+    .overlap-item:first-child {
+        border-radius: 1rem 1rem 0 0; /* Rotunjit doar sus */
+        margin-top: 0;
+    }
+    
+    .overlap-item:last-child {
+        border-radius: 0 0 1rem 1rem; /* Rotunjit doar jos */
+    }
+
+    /* Ajustări conținut mobil */
+    .overlap-icon {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+
+    .overlap-details p {
+        font-size: 1rem;
+        line-height: 1.4rem;
+    }
+    
+    /* Pe mobil vrem textul mereu vizibil, nu ascuns */
+    .overlap-details {
+        max-height: 100%;
+        opacity: 1;
+    }
+    
+    /* Resetăm hover-ul complex pe mobil (touch) */
+    .overlap-item:hover {
+        transform: none;
+        z-index: 1;
+        box-shadow: none;
+    }
 }
