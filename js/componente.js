@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const navbarHTML = `
-    <div id="nav-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(2, 6, 23, 0.8); z-index:9998; opacity:0; visibility:hidden; transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1); backdrop-filter: blur(4px);"></div>
+    <div id="nav-overlay" style="position:fixed; top:5rem; left:0; width:100%; height:calc(100vh - 5rem); background:rgba(2, 6, 23, 0.8); z-index:9996; opacity:0; visibility:hidden; transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1); backdrop-filter: blur(4px);"></div>
     
     <nav class="premium-nav">
         <div class="nav-wrapper">
@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             <ul class="nav-list" id="main-nav">
                 <li class="nav-item-container">
-                    <a href="#" class="nav-item">Servicii<span class="chevron desktop-only"></span></a>
-                    <div class="dropdown-menu">
+                    <a href="#servicii" class="nav-item">Servicii<span class="chevron desktop-only"></span></a>
+                    <div class="dropdown-menu desktop-only">
                         <div class="dropdown-content">
                             <a href="#implant">Implantologie High-Tech</a>
                             <a href="#estetica">Estetică Dentară</a>
@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 </li>
 
                 <li class="nav-item-container">
-                    <a href="#" class="nav-item">Tehnologie<span class="chevron desktop-only"></span></a>
-                    <div class="dropdown-menu">
+                    <a href="#tehnologie" class="nav-item">Tehnologie<span class="chevron desktop-only"></span></a>
+                    <div class="dropdown-menu desktop-only">
                         <div class="dropdown-content">
                             <a href="#scanner">Scanner Intraoral 3D</a>
                             <a href="#ct">Tomografie Computerizată</a>
@@ -38,8 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 </li>
 
                 <li class="nav-item-container">
-                    <a href="#" class="nav-item">Pacienți<span class="chevron desktop-only"></span></a>
-                    <div class="dropdown-menu">
+                    <a href="#pacienti" class="nav-item">Pacienți<span class="chevron desktop-only"></span></a>
+                    <div class="dropdown-menu desktop-only">
                         <div class="dropdown-content">
                             <a href="#vizita">Prima Vizită</a>
                             <a href="#preturi">Tarife & Finanțare</a>
@@ -70,23 +70,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const pageContent = document.getElementById('page-content');
     const premiumNav = document.querySelector('.premium-nav');
     const overlay = document.getElementById('nav-overlay');
-    const navContainers = document.querySelectorAll('.nav-item-container');
+    const allLinks = document.querySelectorAll('.nav-item, .dropdown-content a');
 
     const toggleMobileMenu = () => {
         const isOpening = !navList.classList.contains('open');
-        
         burgerBtn.classList.toggle('active');
         navList.classList.toggle('open');
-        
         if(pageContent) pageContent.classList.toggle('pushed');
-        // Păstrăm pushed pe premiumNav doar dacă vrei ca logo-ul să se miște
         if(premiumNav) premiumNav.classList.toggle('pushed');
-        
-        // Control Overlay
         overlay.style.opacity = isOpening ? "1" : "0";
         overlay.style.visibility = isOpening ? "visible" : "hidden";
-        
-        // Blocăm scroll-ul pe body
         document.body.style.overflow = isOpening ? "hidden" : "";
     };
 
@@ -97,19 +90,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     overlay.addEventListener('click', toggleMobileMenu);
 
-    navContainers.forEach(container => {
-        const link = container.querySelector('.nav-item');
-        
-        link.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                const hasDropdown = container.querySelector('.dropdown-menu');
-                if (hasDropdown) {
-                    e.preventDefault();
-                    container.classList.toggle('mobile-active');
-                    link.classList.toggle('is-active');
-                } else {
-                    toggleMobileMenu();
-                }
+    // Închide meniul la click pe ORICE link (Servicii, Contact, etc.)
+    allLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navList.classList.contains('open')) {
+                toggleMobileMenu();
             }
         });
     });
