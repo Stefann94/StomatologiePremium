@@ -1,4 +1,4 @@
-/* Navbar-ul rămâne fix și stabil */
+/* --- FUNDAMENT NAVBAR --- */
 .premium-nav {
     position: fixed;
     top: 0;
@@ -12,6 +12,7 @@
     display: flex;
     align-items: center;
     font-family: 'Montserrat', sans-serif;
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 .nav-wrapper {
@@ -24,41 +25,53 @@
     align-items: center;
 }
 
-/* Brand Identity - Fără modificări la hover pentru stabilitate */
+/* --- LOGO --- */
 .brand-identity {
     font-size: clamp(1rem, 1.2vw + 0.4rem, 1.4rem);
     letter-spacing: 0.5rem;
     text-transform: uppercase;
     cursor: pointer;
     white-space: nowrap;
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
 }
-
 .brand-light { color: #A7F3D0; font-weight: 300; }
 .brand-bold { color: #F8FAFC; font-weight: 500; }
 
+/* --- NAV LIST --- */
 .nav-list {
     display: flex;
     list-style: none;
-    gap: 1.5rem; /* Distanță fixă */
+    gap: 1.5rem;
     align-items: center;
 }
 
-/* Item-ul de navigație - STABIL */
+.nav-item-container { 
+    position: relative; 
+    height: 5rem; 
+    display: flex; 
+    align-items: center;
+}
+
 .nav-item {
     text-decoration: none;
     color: #94A3B8;
     font-size: 0.75rem;
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.15rem; /* Rămâne FIXĂ la hover */
+    letter-spacing: 0.15rem;
     padding: 1rem;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     position: relative;
-    transition: color 0.3s ease;
+    transition: color 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: color;
 }
 
-/* Linia de sub buton care indică starea activă fără să miște textul */
+.nav-item:hover, .nav-item.is-active {
+    color: #A7F3D0 !important;
+}
+
+/* Underline animation (Desktop) */
 .nav-item::after {
     content: '';
     position: absolute;
@@ -68,47 +81,38 @@
     height: 1px;
     background: #A7F3D0;
     transform: scaleX(0);
-    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Starea activă globală (hover sau dropdown deschis) */
-.nav-item:hover, 
-.nav-item.is-active {
-    color: #A7F3D0;
-}
-
-.nav-item:hover::after,
-.nav-item.is-active::after {
+.nav-item:hover::after, .nav-item.is-active::after {
     transform: scaleX(1);
 }
 
-/* Chevron stabil */
+/* --- CHEVRON --- */
 .chevron {
+    display: inline-block;
     width: 0.35rem;
     height: 0.35rem;
     border-right: 1px solid currentColor;
     border-bottom: 1px solid currentColor;
-    transform: rotate(45deg);
+    transform: rotate(45deg); 
     margin-left: 0.6rem;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease;
 }
 
 .nav-item.is-active .chevron {
     transform: rotate(-135deg);
 }
 
-/* Dropdown Menu */
-.nav-item-container { position: relative; }
-
+/* --- DROPDOWN DESKTOP --- */
 .dropdown-menu {
     position: absolute;
     top: 100%;
-    left: 0.5rem;
-    padding-top: 1rem;
+    left: 0;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(0.5rem);
-    transition: all 0.3s ease;
+    transform: translateY(-0.5rem);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .nav-item-container:hover .dropdown-menu {
@@ -122,7 +126,7 @@
     border: 1px solid rgba(167, 243, 208, 0.1);
     min-width: 16rem;
     padding: 1.2rem;
-    box-shadow: 0 1rem 2rem rgba(0,0,0,0.5);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,0.6);
 }
 
 .dropdown-content a {
@@ -130,7 +134,6 @@
     color: #94A3B8;
     text-decoration: none;
     font-size: 0.7rem;
-    letter-spacing: 0.1rem;
     padding: 0.6rem 0;
     transition: all 0.3s ease;
 }
@@ -140,7 +143,7 @@
     transform: translateX(0.3rem);
 }
 
-/* Buton Rezervare */
+/* --- CTA BUTTON --- */
 .cta-button {
     padding: 0.8rem 1.5rem;
     border: 1px solid #A7F3D0;
@@ -152,10 +155,94 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
 }
 
 .cta-button:hover {
     background: #A7F3D0;
     color: #0F172A;
+    box-shadow: 0 0 1.5rem rgba(167, 243, 208, 0.3);
+}
+
+/* --- BURGER & MOBILE LOGIC --- */
+.burger-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    width: 2.5rem;
+    height: 2.5rem;
+    cursor: pointer;
+    z-index: 10002;
+}
+
+.burger-btn span {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #A7F3D0;
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.3s ease;
+}
+
+.burger-btn.active span:nth-child(1) { transform: translateY(4.5px) rotate(45deg); }
+.burger-btn.active span:nth-child(2) { transform: translateY(-4.5px) rotate(-45deg); }
+
+@media (max-width: 48rem) {
+    .desktop-only { display: none !important; }
+    .burger-btn { display: flex; }
+
+.nav-list {
+        position: fixed;
+        top: 5rem; /* Începe exact unde se termină navbar-ul */
+        right: 0;
+        width: 70vw;
+        height: calc(100vh - 5rem); /* Ocupă restul ecranului sub navbar */
+        background: #0B1221;
+        flex-direction: column;
+        justify-content: flex-start; /* Aliniem elementele sus, nu pe centru */
+        align-items: flex-start;
+        padding: 2rem 3rem; /* Spațiere interioară mai curată */
+        gap: 1.5rem;
+        z-index: 9997; /* Sub navbar (9999) și sub butonul burger */
+        margin: 0;
+        border-left: 1px solid rgba(167, 243, 208, 0.1);
+        transform: translateX(100%);
+        transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        overflow-y: auto; /* Permite scroll în interiorul meniului dacă sunt multe servicii */
+    }
+
+    .nav-list.open { transform: translateX(0); }
+
+    /* Push Effects */
+    #page-content.pushed { transform: translateX(-70vw); }
+    .premium-nav.pushed .brand-identity { transform: translateX(-10vw); }
+
+    .nav-item-container {
+        height: auto;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dropdown-menu {
+        position: static;
+        max-height: 0;
+        opacity: 0;
+        visibility: hidden;
+        overflow: hidden;
+        transform: none;
+        transition: all 0.4s ease;
+    }
+
+    .nav-item-container.mobile-active .dropdown-menu {
+        max-height: 40rem;
+        opacity: 1;
+        visibility: visible;
+        margin-top: 0.5rem;
+    }
+    /* Asigurăm că overlay-ul începe tot de sub navbar pentru consistență */
+    #nav-overlay {
+        top: 5rem !important;
+        height: calc(100vh - 5rem) !important;
+    }
 }
