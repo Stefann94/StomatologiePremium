@@ -1,0 +1,161 @@
+/* Navbar-ul rămâne fix și stabil */
+.premium-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 5rem;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(1.5rem);
+    -webkit-backdrop-filter: blur(1.5rem);
+    border-bottom: 0.05rem solid rgba(167, 243, 208, 0.1);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.nav-wrapper {
+    width: 100%;
+    max-width: 95rem;
+    margin: 0 auto;
+    padding: 0 4vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Brand Identity - Fără modificări la hover pentru stabilitate */
+.brand-identity {
+    font-size: clamp(1rem, 1.2vw + 0.4rem, 1.4rem);
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.brand-light { color: #A7F3D0; font-weight: 300; }
+.brand-bold { color: #F8FAFC; font-weight: 500; }
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem; /* Distanță fixă */
+    align-items: center;
+}
+
+/* Item-ul de navigație - STABIL */
+.nav-item {
+    text-decoration: none;
+    color: #94A3B8;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15rem; /* Rămâne FIXĂ la hover */
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Linia de sub buton care indică starea activă fără să miște textul */
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0.5rem;
+    left: 1rem;
+    right: 1rem;
+    height: 1px;
+    background: #A7F3D0;
+    transform: scaleX(0);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Starea activă globală (hover sau dropdown deschis) */
+.nav-item:hover, 
+.nav-item.is-active {
+    color: #A7F3D0;
+}
+
+.nav-item:hover::after,
+.nav-item.is-active::after {
+    transform: scaleX(1);
+}
+
+/* Chevron stabil */
+.chevron {
+    width: 0.35rem;
+    height: 0.35rem;
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    transform: rotate(45deg);
+    margin-left: 0.6rem;
+    transition: transform 0.3s ease;
+}
+
+.nav-item.is-active .chevron {
+    transform: rotate(-135deg);
+}
+
+/* Dropdown Menu */
+.nav-item-container { position: relative; }
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0.5rem;
+    padding-top: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(0.5rem);
+    transition: all 0.3s ease;
+}
+
+.nav-item-container:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-content {
+    background: #0F172A;
+    border: 1px solid rgba(167, 243, 208, 0.1);
+    min-width: 16rem;
+    padding: 1.2rem;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,0.5);
+}
+
+.dropdown-content a {
+    display: block;
+    color: #94A3B8;
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 0.1rem;
+    padding: 0.6rem 0;
+    transition: all 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    color: #A7F3D0;
+    transform: translateX(0.3rem);
+}
+
+/* Buton Rezervare */
+.cta-button {
+    padding: 0.8rem 1.5rem;
+    border: 1px solid #A7F3D0;
+    color: #A7F3D0;
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background: #A7F3D0;
+    color: #0F172A;
+}

@@ -1,0 +1,44 @@
+/* css/variabile.css */
+:root {
+    /* Paleta de Culori (The Clinical Mint) */
+    --primary-mint: #A7F3D0;
+    --navy-dark: #0F172A;
+    --navy-light: #1E293B;
+    --pure-ice: #F8FAFC;
+    --silver-metallic: #94A3B8;
+    
+    /* Culori Suport */
+    --glass-bg: rgba(15, 23, 42, 0.85); /* Navy cu transparență */
+    --accent-glow: rgba(167, 243, 208, 0.3);
+
+    /* Dimensiuni (Fără PX) */
+    --nav-height: 5rem;
+    --container-max: 80rem; /* ~1280px */
+    --gap-sm: 1rem;
+    --gap-md: 2rem;
+
+    /* Tipografie Fluidă */
+    --fs-logo: clamp(1.2rem, 1rem + 1vw, 1.8rem);
+    --fs-nav: clamp(0.9rem, 0.8rem + 0.5vw, 1.1rem);
+    --btn-padding: 0.8rem 1.8rem;
+
+    --font-primary: 'Montserrat', sans-serif;
+    
+    /* Secretul pentru look-ul din poză: letter spacing mare */
+    --ls-premium: 0.4rem; 
+    --ls-button: 0.15rem;
+}
+
+/* Reset de bază */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--pure-ice);
+    font-family: 'Inter', sans-serif; /* Recomandat pentru High-Tech */
+    color: var(--navy-dark);
+    line-height: 1.6;
+}
