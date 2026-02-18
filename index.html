@@ -3,18 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MINT DENT | Ultra-Premium Stomatology</title>
+    <title>MINT DENT | Premium Stomatology</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/hero.css">
 </head>
 <body style="background-color: #0F172A; margin: 0; overflow-x: hidden;">
-    <div id="site-wrapper" style="background-color: #0F172A; min-height: 100vh; position: relative; overflow: hidden;">
-        <script src="js/componente.js"></script>
-        <div id="page-content" style="transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1); will-change: transform; background-color: #0F172A;">
-            <main id="hero-section" style="height: 100vh;"></main>
+
+    <div id="site-wrapper">
+        <div id="page-content">
+            
+            <section id="hero-slider" class="hero-slider">
+                <div class="slider-container" id="slider-container">
+                    
+                    <div class="slide active" style="background-image: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), url('pictures/Dental-office.png');">
+            <div class="slide-content anim-top">
+                <h1>Excelență în Stomatologie</h1>
+                <p>Tehnologie de ultimă generație pentru zâmbetul tău.</p>
+                <a href="#servicii" class="hero-cta">AFLĂ MAI MULTE</a>
+            </div>
         </div>
-    </div>
+
+        <div class="slide" style="background-image: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), url('pictures/zambet-hero.jpg');">
+            <div class="slide-content anim-bottom">
+                <h1>Zâmbet Perfect</h1>
+                <p>Estetică dentară realizată de experți internaționali.</p>
+                <a href="#estetica" class="hero-cta">AFLĂ MAI MULTE</a>
+            </div>
+        </div>
+
+        <div class="slide" style="background-image: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), url('pictures/implantologie-hero.jpg');">
+            <div class="slide-content anim-left">
+                <h1>Implantologie High-Tech</h1>
+                <p>Soluții digitale pentru o reconstrucție rapidă și sigură.</p>
+                <a href="#implantologie" class="hero-cta">AFLĂ MAI MULTE</a>
+            </div>
+        </div>
+
+        <div class="slide" style="background-image: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), url('pictures/ortodontie-hero.png');">
+            <div class="slide-content anim-right">
+                <h1>Ortodonție Invizibilă</h1>
+                <p>Aliniere discretă pentru un stil de viață modern.</p>
+                <a href="#ortodontie" class="hero-cta">AFLĂ MAI MULTE</a>
+            </div>
+        </div>
+
+                </div>
+
+                <button class="slider-arrow prev" id="prevSlide" aria-label="Previous slide">&#10094;</button>
+                <button class="slider-arrow next" id="nextSlide" aria-label="Next slide">&#10095;</button>
+
+                <div class="slider-dots" id="slider-dots">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                    <span class="dot" data-index="3"></span>
+                </div>
+            </section>
+
+            </div> </div> <script src="js/componente.js"></script>
+    <script src="js/hero.js"></script>
+
 </body>
 </html>
