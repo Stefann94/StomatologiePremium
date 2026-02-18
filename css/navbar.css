@@ -193,18 +193,26 @@
     .desktop-only { display: none !important; }
     .burger-btn { display: flex; }
 
-    .nav-list {
+.nav-list {
         position: fixed;
         top: 5rem;
         right: 0;
-        width: 70vw;
+        width: 45vw; /* Lățimea ta actuală, care arată bine */
         height: calc(100vh - 5rem);
         background: #0B1221;
+        
+        display: flex;
         flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding: 3rem;
-        gap: 2rem;
+        
+        /* REPARAȚIE POZIȚIONARE: */
+        justify-content: center; /* Centrează grupul pe verticală */
+        align-items: flex-start;  /* Aliniază link-urile la stânga */
+        
+        /* Ajustăm padding-ul: 0 sus/jos, 15% în stânga pentru un aspect premium */
+        padding: 0 0 0 15%; 
+        
+        gap: 2rem; /* Reducem puțin gap-ul pentru a nu "întinde" lista prea mult */
+        
         z-index: 9997;
         margin: 0;
         border-left: 1px solid rgba(167, 243, 208, 0.1);
