@@ -188,63 +188,101 @@
 .burger-btn.active span:nth-child(1) { transform: translateY(4.5px) rotate(45deg); }
 .burger-btn.active span:nth-child(2) { transform: translateY(-4.5px) rotate(-45deg); }
 
-/* --- MOBILE LOGIC --- */
+/* --- MOBILE LOGIC FINAL & FIXED --- */
 @media (max-width: 48rem) {
-    .desktop-only { display: none !important; }
-    .burger-btn { display: flex; }
-
-.nav-list {
-        position: fixed;
-        top: 5rem;
-        right: 0;
-        width: 45vw; /* Lățimea ta actuală, care arată bine */
-        height: calc(100vh - 5rem);
-        background: #0B1221;
-        
-        display: flex;
-        flex-direction: column;
-        
-        /* REPARAȚIE POZIȚIONARE: */
-        justify-content: center; /* Centrează grupul pe verticală */
-        align-items: flex-start;  /* Aliniază link-urile la stânga */
-        
-        /* Ajustăm padding-ul: 0 sus/jos, 15% în stânga pentru un aspect premium */
-        padding: 0 0 0 15%; 
-        
-        gap: 2rem; /* Reducem puțin gap-ul pentru a nu "întinde" lista prea mult */
-        
-        z-index: 9997;
-        margin: 0;
-        border-left: 1px solid rgba(167, 243, 208, 0.1);
-        transform: translateX(100%);
-        transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-        overflow-y: auto;
+    
+    .desktop-only { 
+        display: none !important; 
     }
 
-    .nav-list.open { transform: translateX(0); }
+    .burger-btn { 
+        display: flex;
+        z-index: 10002;
+        -webkit-tap-highlight-color: transparent;
+    }
 
-    #page-content.pushed { transform: translateX(-70vw); }
-    .premium-nav.pushed .brand-identity { transform: translateX(-10vw); }
+    /* MENIU LATERAL SLIDE-IN (NU MAI IMPINGE PAGINA) */
+.nav-list {
+    position: fixed;
+    top: 5rem;
+    right: 0;
+    width: 45vw;
+    height: calc(100vh - 5rem);
+    background: #0B1221;
 
+    display: flex;
+    flex-direction: column;
+
+    /* CENTRARE VERTICALĂ PERFECTĂ */
+    justify-content: center;
+
+    /* ORDONARE LA STÂNGA */
+    align-items: flex-start;
+
+    /* MARGINE LA STÂNGA */
+    padding-left: 15%;
+
+    /* SPAȚIERE ECHILIBRATĂ ÎNTRE LINK-URI */
+    gap: 1.4rem;
+
+    border-left: 1px solid rgba(167, 243, 208, 0.1);
+
+    z-index: 9999;
+
+    transform: translateX(100%);
+    transition: transform 0.45s cubic-bezier(0.77, 0, 0.175, 1);
+
+    overflow-y: auto;
+    will-change: transform;
+}
+
+
+    .nav-list.open {
+        transform: translateX(0);
+    }
+
+    /* --- FĂRĂ PUSH — eliminate complet --- */
+    #page-content.pushed,
+    .premium-nav.pushed {
+        transform: none !important;
+    }
+
+    .premium-nav.pushed .brand-identity {
+        transform: none !important;
+    }
+
+    /* LINK-URI */
     .nav-item-container {
-        height: auto;
         width: 100%;
         display: block;
     }
 
     .nav-item {
-        padding: 0.5rem 0;
+        padding: 0.3rem 0;
         font-size: 1rem;
         width: 100%;
+        color: #94A3B8;
+        letter-spacing: 0.15rem;
+        -webkit-tap-highlight-color: transparent;
     }
 
-    /* Dezactivăm dropdown-ul complet pe mobil */
-    .dropdown-menu {
+    .nav-item:active {
+        color: #A7F3D0 !important;
+    }
+
+    /* FĂRĂ DROPDOWN PE MOBIL */
+    .dropdown-menu,
+    .nav-item::after {
         display: none !important;
     }
 
+    /* OVERLAY FIX */
     #nav-overlay {
         top: 5rem !important;
         height: calc(100vh - 5rem) !important;
+        z-index: 9996;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
     }
 }

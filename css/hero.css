@@ -42,6 +42,14 @@
     max-width: 50rem;
     padding: 0 2rem;
     font-family: 'Montserrat', sans-serif;
+    
+    /* Ridicăm întreg grupul de texte și butonul cu 10% din înălțimea Hero-ului */
+    /* Aceasta lasă spațiu generos în partea de jos pentru viitoarele carduri */
+    transform: translateY(-12%) !important; 
+    
+    opacity: 0;
+    transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+    transition-delay: 0.4s;
 }
 
 .slide-content h1 {
@@ -69,20 +77,14 @@
 
 .slide.active .slide-content {
     opacity: 1;
-    transform: translate(0, 0) !important;
+   transform: translateY(-12%) translateX(0) !important;
 }
 
-/* Slide 1: Din Sus */
-.anim-top { transform: translateY(-50px); }
-
-/* Slide 2: Din Jos */
-.anim-bottom { transform: translateY(50px); }
-
-/* Slide 3: Din Stânga */
-.anim-left { transform: translateX(-50px); }
-
-/* Slide 4: Din Dreapta */
-.anim-right { transform: translateX(50px); }
+/* Ajustăm punctele de plecare pentru animații ca să nu "sară" ciudat */
+.anim-top { transform: translateY(-60px) translateY(-12%); }
+.anim-bottom { transform: translateY(60px) translateY(-12%); }
+.anim-left { transform: translateX(-60px) translateY(-12%); }
+.anim-right { transform: translateX(60px) translateY(-12%); }
 
 /* --- CONTROALE --- */
 .slider-arrow {
@@ -106,7 +108,7 @@
 
 .slider-dots {
     position: absolute;
-    bottom: 5vh;
+    bottom: 3vh; /* Mutat de la 5vh mai jos */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
