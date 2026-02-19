@@ -1,8 +1,9 @@
 .about-section {
-    padding: 10rem 4vw; /* Spațiu mare deasupra/dedesubt pentru aerisire */
+    padding: 18rem 4vw 10rem 4vw;
     background-color: #0F172A;
     color: #F8FAFC;
     overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .about-container {
@@ -12,6 +13,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 6rem;
     align-items: center;
+    
 }
 
 /* --- IMAGE SIDE --- */
