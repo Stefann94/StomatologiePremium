@@ -1,0 +1,123 @@
+.about-section {
+    padding: 10rem 4vw; /* Spațiu mare deasupra/dedesubt pentru aerisire */
+    background-color: #0F172A;
+    color: #F8FAFC;
+    overflow: hidden;
+}
+
+.about-container {
+    max-width: 85rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+}
+
+/* --- IMAGE SIDE --- */
+.about-image-wrapper {
+    position: relative;
+    border-radius: 1.5rem;
+    /* isolation: isolate; */
+}
+
+.about-main-image {
+    width: 100%;
+    height: 40rem;
+    object-fit: cover;
+    border-radius: 1.5rem;
+    filter: brightness(0.8);
+    border: 1px solid rgba(167, 243, 208, 0.1);
+}
+
+.image-experience-badge {
+    position: absolute;
+    top: -2rem;
+    right: -2rem;
+    background: #A7F3D0;
+    color: #0F172A;
+    padding: 2rem;
+    border-radius: 1rem;
+    z-index: 10;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.badge-number { font-size: 2.5rem; font-weight: 600; display: block; }
+.badge-text { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1rem; font-weight: 500; }
+
+/* --- CONTENT SIDE --- */
+.section-subtitle {
+    color: #A7F3D0;
+    text-transform: uppercase;
+    letter-spacing: 0.4rem;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.section-title {
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02rem;
+}
+
+.about-lead {
+    font-size: 1.2rem;
+    color: #94A3B8;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    border-left: 2px solid #A7F3D0;
+    padding-left: 1.5rem;
+}
+
+.about-description p {
+    font-size: 0.95rem;
+    color: #94A3B8;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+/* --- STATS --- */
+.about-stats {
+    display: flex;
+    gap: 4rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(167, 243, 208, 0.1);
+}
+
+.stat-val {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #A7F3D0;
+    margin-bottom: 0.3rem;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
+    color: #64748B;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 64rem) {
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+    
+    .about-main-image { height: 30rem; }
+    
+    .about-section { padding: 6rem 6vw; }
+
+    .image-experience-badge {
+        top: 2rem;
+        right: 2rem;
+    }
+}

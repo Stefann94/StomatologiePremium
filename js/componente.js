@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     <nav class="premium-nav">
         <div class="nav-wrapper">
-            <div class="brand-identity">
+            <a href="/" class="brand-identity" style="text-decoration: none; display: flex; align-items: center;">
                 <span class="brand-light">MINT</span><span class="brand-bold">DENT</span>
-            </div>
+            </a>
             
             <div class="burger-btn" id="burger-trigger">
                 <span></span>
@@ -98,4 +98,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+});
+
+const burger = document.querySelector(".burger-btn");
+const navList = document.querySelector(".nav-list");
+
+burger.addEventListener("click", () => {
+    navList.classList.toggle("active");
+    burger.classList.toggle("active");
 });

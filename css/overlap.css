@@ -1,0 +1,164 @@
+/* --- FUNDAMENT GRID --- */
+.hero-overlap-grid {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    /* Ridicăm grid-ul astfel încât sfertul de sus (25%) să fie vizibil pe Hero */
+    transform: translate(-50%, 75%); 
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    height: 11.5rem;
+    width: 92%;
+    max-width: 82rem;
+    z-index: 100; /* Z-index ridicat pentru a sta peste slide-uri */
+    gap: 0;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border-radius: 1.2rem;
+    overflow: hidden;
+    isolation: isolate;
+    background: #0F172A; 
+}
+
+/* --- CARD ITEM --- */
+.overlap-item {
+    position: relative;
+    height: 11.5rem;
+    overflow: hidden;
+    background: #0B1221;
+    border-right: 1px solid rgba(167, 243, 208, 0.1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.overlap-item:last-child {
+    border-right: none;
+}
+
+/* --- IMAGINE ȘI OVERLAY --- */
+.overlap-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6; /* Opacitate redusă pentru a evidenția textul elegant */
+    transition: transform 0.8s ease;
+    z-index: 1;
+}
+
+.overlap-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--overlay-color);
+    mix-blend-mode: multiply;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+}
+
+/* --- CONȚINUT CENTRAT (SOLUȚIA PENTRU VIZIBILITATE) --- */
+.overlap-content {
+    position: absolute;
+    /* Forțăm conținutul să stea în sfertul de sus pe desktop (partea care mușcă din Hero) */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Acoperă tot cardul */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Aliniem sus pentru a fi vizibil în "mușcătură" */
+    align-items: center;
+    padding-top: 1.2rem; /* Spațiere de la marginea de sus */
+    z-index: 5;
+}
+
+.overlap-icon {
+    width: 2.2rem; /* Dimensiune elegantă, mai mică */
+    height: 2.2rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    transition: transform 0.4s ease;
+}
+
+.overlap-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.4rem;
+}
+
+.overlap-details p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem; /* Text mai mic = mai elegant */
+    color: #F8FAFC;
+    text-align: center;
+    line-height: 1.3;
+    margin: 0.1rem 0;
+    font-weight: 300;
+    letter-spacing: 0.02rem;
+}
+
+.overlap-content h3 {
+    margin: 0;
+    text-align: center;
+    font-size: 0.85rem;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.2rem; /* Spațiere premium */
+    color: #A7F3D0;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* --- HOVER DESKTOP --- */
+@media (min-width: 48.01rem) {
+    .overlap-item:hover {
+        background: #1e293b;
+    }
+    
+    .overlap-item:hover .overlap-bg {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+
+    .overlap-item:hover .overlap-icon {
+        transform: translateY(-3px);
+    }
+}
+
+/* --- RESPONSIVE MOBILE (OPTIMIZAT) --- */
+@media (max-width: 48rem) {
+    .hero-overlap-grid {
+        position: relative;
+        grid-template-columns: 1fr;
+        width: 92%;
+        margin: -3rem auto 3rem auto; 
+        transform: none;
+        left: 0;
+        height: auto; /* Lăsăm cardurile să se extindă */
+        border-radius: 1rem;
+    }
+
+    .overlap-item {
+        height: 10rem; /* Înălțime fixă pe mobil pentru consistență */
+        border-right: none;
+        border-bottom: 1px solid rgba(167, 243, 208, 0.1);
+    }
+
+    .overlap-content {
+        justify-content: center; /* Pe mobil centrăm totul, fiindcă e vizibil tot cardul */
+        padding-top: 0;
+    }
+
+    .overlap-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .overlap-content h3 {
+        font-size: 0.9rem;
+        letter-spacing: 0.15rem;
+    }
+}
