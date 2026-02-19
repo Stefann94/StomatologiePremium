@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Selectăm absolut toate elementele care trebuie să aibă animație proprie
     const elementsToAnimate = document.querySelectorAll(
-        '.section-subtitle, .section-title, .about-lead, .about-description p, .stat-item, .about-main-image, .image-experience-badge, .why-header, .benefit-item, .accordion-item'
+        '.section-subtitle, .section-title, .about-lead, .about-description p, .stat-item, .about-main-image, .image-experience-badge, .why-header, .benefit-item, .accordion-item, .form-wrapper'
     );
 
     elementsToAnimate.forEach(el => revealObserver.observe(el));

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/overlap.css">
     <link rel="stylesheet" href="css/about.css">
     <link rel="stylesheet" href="css/why-us.css">
+    <link rel="stylesheet" href="css/booking.css">
 </head>
 <body style="background-color: #0F172A; margin: 0; overflow-x: hidden;">
 
@@ -244,6 +245,85 @@
         </div>
     </div>
 </section>
+
+<section id="rezervare" class="booking-section">
+    <div class="booking-container">
+<div class="booking-image-side">
+    <div class="parallax-bg" style="background-image: url('pictures/dental-equipment.jpg');"></div>
+    
+    <div class="booking-visual-container">
+        <img src="pictures/formular.png" alt="Formular" class="booking-floating-img">
+        
+        <div class="image-overlay-text">
+            <span class="experience-tag">Tehnologie 3D</span>
+            <h2>Precizie în fiecare detaliu.</h2>
+        </div>
+    </div>
+</div>
+
+        <div class="booking-form-side">
+            <div class="form-wrapper">
+                <h2 class="section-subtitle">Programări Online</h2>
+                <h1 class="section-title">REZERVĂ CONSULTUL TĂU PREMIUM</h1>
+                
+                <form id="appointment-form" class="premium-form">
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <input type="text" id="name" required placeholder=" ">
+                            <label for="name">Nume Complet</label>
+                            <span class="input-bar"></span>
+                        </div>
+                        <div class="input-group">
+                            <input type="tel" id="phone" required placeholder=" ">
+                            <label for="phone">Telefon</label>
+                            <span class="input-bar"></span>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="email" id="email" required placeholder=" ">
+                        <label for="email">Adresă de Email</label>
+                        <span class="input-bar"></span>
+                    </div>
+
+<div class="input-group custom-select-wrapper">
+    <div class="custom-select" id="custom-service-select">
+        <div class="select-trigger">
+            <span></span> 
+            <span class="chevron"></span>
+        </div>
+        <div class="dropdown-menu">
+            <div class="dropdown-content">
+                <div class="option" data-value="estetica">Estetică Dentară</div>
+                <div class="option" data-value="implant">Implantologie</div>
+                <div class="option" data-value="ortodontie">Ortodonție</div>
+                <div class="option" data-value="control">Control Periodic</div>
+            </div>
+        </div>
+    </div>
+    <label class="floating-label">Serviciul Dorit</label>
+    <input type="hidden" name="service" id="service-hidden-input" required>
+    <span class="input-bar"></span>
+</div>
+
+                    <div class="input-group">
+                        <textarea id="message" rows="3" placeholder=" "></textarea>
+                        <label for="message">Mesajul tău (Opțional)</label>
+                        <span class="input-bar"></span>
+                    </div>
+
+                    <button type="submit" class="booking-submit-btn">
+                        TRIMITE SOLICITAREA
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
         </div>
     </div>
 
@@ -251,5 +331,6 @@
     <script src="js/hero.js"></script>
     <script src="js/why-us.js"></script>
     <script src="js/scroll-reveal.js"></script>
+    <script src="js/custom-select-serviciu-home.js"></script>
 </body>
 </html>

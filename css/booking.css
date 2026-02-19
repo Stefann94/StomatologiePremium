@@ -1,0 +1,360 @@
+/* booking.css */
+
+/* --- CONFIGURAȚIE GLOBALĂ SECȚIUNE --- */
+.booking-section {
+    background-color: #0F172A;
+    min-height: 100vh;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    position: relative;
+    border-top: 1px solid rgba(167, 243, 208, 0.05);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.booking-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* --- PARTEA STÂNGĂ: REVEAL IMAGE (DESKTOP) --- */
+.booking-image-side {
+    flex: 1.1; 
+    position: relative;
+    overflow: hidden;
+    display: none;
+}
+
+@media (min-width: 64rem) {
+    .booking-image-side { display: block; }
+}
+
+.parallax-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-attachment: fixed; 
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    filter: brightness(0.5) contrast(1.1);
+}
+
+.booking-image-side::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.9));
+    pointer-events: none;
+}
+
+.image-overlay-text {
+    position: absolute;
+    bottom: 15%; left: 10%;
+    z-index: 10;
+    color: #F8FAFC;
+    max-width: 28rem;
+}
+
+.experience-tag {
+    color: #A7F3D0;
+    text-transform: uppercase;
+    letter-spacing: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    display: block;
+}
+
+.image-overlay-text h2 {
+    font-size: 2.8rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.03rem;
+}
+
+/* --- PARTEA DREAPTĂ: FORMULAR --- */
+.booking-form-side {
+    flex: 0.9;
+    padding: 8rem 6vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0F172A;
+    z-index: 2;
+}
+
+.form-wrapper {
+    max-width: 38rem;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
+}
+
+.form-wrapper.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.booking-form-side .section-subtitle {
+    color: #A7F3D0;
+    letter-spacing: 0.5rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.booking-form-side .section-title {
+    color: #F8FAFC;
+    font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 3.5rem;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+}
+
+/* --- ELEMENTE FORMULAR --- */
+.premium-form {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+}
+
+.input-group input, 
+.input-group textarea {
+    width: 100%;
+    padding: 0.8rem 0;
+    background: transparent !important;
+    border: none;
+    border-bottom: 1px solid rgba(167, 243, 208, 0.2);
+    color: #F8FAFC !important; 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.4s ease;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+}
+
+.input-group label {
+    position: absolute;
+    top: 0.8rem;
+    left: 0;
+    color: #64748B;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
+    z-index: 1;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label,
+.input-group textarea:focus + label,
+.input-group textarea:not(:placeholder-shown) + label {
+    top: -1.5rem;
+    font-size: 0.7rem;
+    color: #A7F3D0;
+    letter-spacing: 0.25rem;
+}
+
+.input-bar {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    height: 1px;
+    width: 0;
+    background: #A7F3D0;
+    transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.input-group :focus ~ .input-bar {
+    width: 100%;
+}
+
+/* --- CUSTOM SELECT PREMIUM --- */
+.custom-select-wrapper {
+    position: relative;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    z-index: 10;
+}
+
+.custom-select {
+    width: 100%;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(167, 243, 208, 0.2);
+    position: relative;
+    z-index: 5;
+}
+
+.select-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #F8FAFC;
+    font-size: 1rem;
+    min-height: 1.5rem;
+    pointer-events: auto; 
+}
+
+.custom-select .chevron {
+    width: 0.35rem;
+    height: 0.35rem;
+    border-right: 1px solid #A7F3D0;
+    border-bottom: 1px solid #A7F3D0;
+    transform: rotate(45deg);
+    transition: transform 0.4s ease;
+}
+
+.custom-select.is-open .chevron {
+    transform: rotate(-135deg);
+}
+
+.custom-select .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 9999;
+    background: #0F172A;
+    pointer-events: none;
+    /* REPARARE SCROLL ORIZONTAL */
+    overflow-x: hidden; 
+}
+
+.custom-select.is-open .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.custom-select .dropdown-content {
+    border: 1px solid rgba(167, 243, 208, 0.1);
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    box-shadow: 0 1rem 3rem rgba(0,0,0,0.6);
+    max-height: 250px;
+    overflow-y: auto;
+    /* REPARARE SCROLL ORIZONTAL */
+    overflow-x: hidden; 
+}
+
+.custom-select .option {
+    padding: 1.2rem 1.5rem;
+    color: #94A3B8;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    /* Ne asigurăm că textul nu forțează lățimea containerului */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.custom-select .option:hover, 
+.custom-select .option:active {
+    color: #A7F3D0;
+    background: transparent !important;
+    transform: translateX(0.5rem);
+}
+
+.custom-select-wrapper.is-focused .floating-label,
+.custom-select-wrapper.has-value .floating-label {
+    top: -1.5rem !important;
+    font-size: 0.7rem !important;
+    color: #A7F3D0;
+    letter-spacing: 0.25rem;
+}
+
+/* --- BUTON SUBMIT --- */
+.booking-submit-btn {
+    margin-top: 1.5rem;
+    padding: 1.6rem 2.8rem;
+    background: transparent;
+    border: 1px solid #A7F3D0;
+    color: #A7F3D0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    text-transform: uppercase;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.booking-submit-btn svg {
+    transition: transform 0.4s ease;
+    margin-left: 1rem;
+}
+
+.booking-submit-btn:hover {
+    background: #A7F3D0;
+    color: #0F172A;
+    box-shadow: 0 15px 40px rgba(167, 243, 208, 0.15);
+    transform: translateY(-2px);
+}
+
+.booking-submit-btn:hover svg {
+    transform: translateX(8px);
+}
+
+/* --- RESPONSIVE MOBILE FINAL --- */
+@media (max-width: 48rem) {
+    .booking-form-side {
+        padding: 5rem 6vw;
+    }
+
+    .premium-form {
+        gap: 2.5rem;
+    }
+
+    .input-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .booking-form-side .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .custom-select.is-open {
+        z-index: 1002;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: #F8FAFC !important;
+    -webkit-box-shadow: 0 0 0px 1000px #0F172A inset !important;
+}
+
