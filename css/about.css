@@ -107,19 +107,40 @@
     color: #64748B;
 }
 
-/* --- RESPONSIVE --- */
-@media (max-width: 64rem) {
-    .about-container {
-        grid-template-columns: 1fr;
-        gap: 4rem;
-    }
-    
-    .about-main-image { height: 30rem; }
-    
-    .about-section { padding: 6rem 6vw; }
-
-    .image-experience-badge {
-        top: 2rem;
-        right: 2rem;
-    }
+/* --- STĂRI INIȚIALE (HIDDEN) --- */
+.section-subtitle, .section-title, .about-lead, 
+.about-description p, .stat-item, .about-main-image, 
+.image-experience-badge {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform, opacity;
 }
+
+/* Badge-ul are o stare inițială specială (venind din dreapta) */
+.image-experience-badge {
+    transform: translateX(40px) scale(0.8);
+}
+
+/* Imaginea are un mic zoom out la început */
+.about-main-image {
+    transform: translateY(40px) scale(0.95);
+}
+
+/* --- ACTIVARE INDIVIDUALĂ (MEREU REPETABILĂ) --- */
+.is-visible {
+    opacity: 1 !important;
+    transform: translate(0) scale(1) !important;
+}
+
+/* Sincronizare Badge: Dacă vrei să apară odată cu imaginea, 
+   putem să îi dăm un delay mic doar când devine vizibil */
+.image-experience-badge.is-visible {
+    transition-delay: 0.2s;
+    transition-duration: 1s;
+}
+
+/* Delay-uri scurte pentru cascade la texte doar pentru prima apariție în grup */
+.section-title.is-visible { transition-delay: 0.1s; }
+.about-lead.is-visible { transition-delay: 0.2s; }
+.about-description p.is-visible { transition-delay: 0.1s; }
