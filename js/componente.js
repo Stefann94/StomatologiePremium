@@ -100,10 +100,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-const burger = document.querySelector(".burger-btn");
-const navList = document.querySelector(".nav-list");
 
-burger.addEventListener("click", () => {
-    navList.classList.toggle("active");
-    burger.classList.toggle("active");
-});
