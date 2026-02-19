@@ -144,3 +144,115 @@
 .section-title.is-visible { transition-delay: 0.1s; }
 .about-lead.is-visible { transition-delay: 0.2s; }
 .about-description p.is-visible { transition-delay: 0.1s; }
+
+/* ==========================================
+   STILURI MOBILE (Responsive Fix)
+   ========================================== */
+
+@media (max-width: 48rem) {
+    .about-section {
+        /* Reducem padding-ul de sus; 18rem este prea mult pentru ecrane mici */
+        padding: 10rem 6vw 5rem 6vw;
+    }
+
+    .about-container {
+        /* Trecem la layout vertical */
+        grid-template-columns: 1fr;
+        gap: 4rem;
+        text-align: center;
+    }
+
+    /* --- IMAGE SIDE MOBILE --- */
+    .about-image-wrapper {
+        order: 1; /* Imaginea apare prima pe mobil, sau 2 dacă vrei textul primul */
+        width: 100%;
+        max-width: 25rem;
+        margin: 0 auto;
+    }
+
+    .about-main-image {
+        height: 25rem; /* Imagine mai scundă pe telefon */
+    }
+
+    .image-experience-badge {
+        /* Repoziționăm badge-ul să nu iasă din ecran */
+        top: -1.5rem;
+        right: -1rem;
+        padding: 1.2rem;
+        min-width: 7rem;
+    }
+
+    .badge-number {
+        font-size: 1.8rem;
+    }
+
+    .badge-text {
+        font-size: 0.6rem;
+        letter-spacing: 0.05rem;
+    }
+
+    /* --- CONTENT SIDE MOBILE --- */
+    .about-content {
+        order: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .section-title {
+        font-size: 1.8rem; /* Titlu mai mic pentru mobil */
+        margin-bottom: 1.5rem;
+    }
+
+    .about-lead {
+        font-size: 1.1rem;
+        padding-left: 0;
+        border-left: none;
+        border-bottom: 2px solid #A7F3D0; /* Mutăm linia de accent jos pentru design mobil */
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .about-description p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    /* --- STATS MOBILE --- */
+    .about-stats {
+        width: 100%;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .stat-val {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.6rem;
+    }
+
+    /* --- ANIMATIONS MOBILE RESET --- */
+    /* Pe mobil, eliminăm translateX pentru a evita scroll-ul orizontal nedorit în timpul animației */
+    .image-experience-badge {
+        transform: translateY(20px) scale(0.8); /* Schimbăm din X în Y */
+    }
+
+    .about-main-image {
+        transform: translateY(20px) scale(1); /* Zoom-ul poate arăta ciudat pe ecrane mici */
+    }
+}
+
+/* Fix pentru ecrane foarte mici (iPhone SE, etc) */
+@media (max-width: 22rem) {
+    .image-experience-badge {
+        right: 0;
+        top: -1rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+}
