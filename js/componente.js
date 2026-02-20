@@ -7,63 +7,66 @@ document.addEventListener('DOMContentLoaded', () => {
         linkCSS.href = 'css/subsol.css';
         document.head.appendChild(linkCSS);
     }
-
-    // 2. STRUCTURĂ NAVBAR
-    const navbarHTML = `
-    <div id="nav-overlay" style="position:fixed; top:5rem; left:0; width:100%; height:calc(100vh - 5rem); background:rgba(2, 6, 23, 0.8); z-index:9996; opacity:0; visibility:hidden; transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1); backdrop-filter: blur(4px);"></div>
-    <nav class="premium-nav">
-        <div class="nav-wrapper">
-            <a href="/" class="brand-identity" style="text-decoration: none; display: flex; align-items: center;">
-                <span class="brand-light">MINT</span><span class="brand-bold">DENT</span>
-            </a>
-            <div class="burger-btn" id="burger-trigger">
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-list" id="main-nav">
-                <li class="nav-item-container">
-                    <a href="#servicii" class="nav-item">Servicii<span class="chevron desktop-only"></span></a>
-                    <div class="dropdown-menu desktop-only">
-                        <div class="dropdown-content">
-                            <a href="#implant">Implantologie High-Tech</a>
-                            <a href="#estetica">Estetică Dentară</a>
-                            <a href="#orto">Ortodonție Invizibilă</a>
-                            <a href="#laser">Chirurgie Laser</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item-container">
-                    <a href="#tehnologie" class="nav-item">Tehnologie<span class="chevron desktop-only"></span></a>
-                    <div class="dropdown-menu desktop-only">
-                        <div class="dropdown-content">
-                            <a href="#scanner">Scanner Intraoral 3D</a>
-                            <a href="#ct">Tomografie Computerizată</a>
-                            <a href="#microscop">Microscop Zeiss</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item-container">
-                    <a href="#pacienti" class="nav-item">Pacienți<span class="chevron desktop-only"></span></a>
-                    <div class="dropdown-menu desktop-only">
-                        <div class="dropdown-content">
-                            <a href="#vizita">Prima Vizită</a>
-                            <a href="#preturi">Tarife & Finanțare</a>
-                            <a href="#faq">Întrebări Frecvente</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item-container"><a href="#cazuri" class="nav-item">Cazuri Clinice</a></li>
-                <li class="nav-item-container"><a href="#contact" class="nav-item">Contact</a></li>
-            </ul>
-            <a href="#rezervare" class="cta-button desktop-only">
-                REZERVARE
-                <svg width="1rem" height="1rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-            </a>
+// --- LOGICĂ DETECTARE PATH ---
+const isInSubfolder = window.location.pathname.includes('/servicii/');
+const pathPrefix = isInSubfolder ? '../' : '';
+const homeLink = isInSubfolder ? '../index.html' : 'index.html';
+    
+// 2. STRUCTURĂ NAVBAR RESCRIISĂ
+const navbarHTML = `
+<div id="nav-overlay" style="position:fixed; top:5rem; left:0; width:100%; height:calc(100vh - 5rem); background:rgba(2, 6, 23, 0.8); z-index:9996; opacity:0; visibility:hidden; transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1); backdrop-filter: blur(4px);"></div>
+<nav class="premium-nav">
+    <div class="nav-wrapper">
+        <a href="${homeLink}" class="brand-identity" style="text-decoration: none; display: flex; align-items: center;">
+            <span class="brand-light">MINT</span><span class="brand-bold">DENT</span>
+        </a>
+        <div class="burger-btn" id="burger-trigger">
+            <span></span>
+            <span></span>
         </div>
-    </nav>`;
-
+        <ul class="nav-list" id="main-nav">
+            <li class="nav-item-container">
+                <a href="${pathPrefix}servicii/servicii.html" class="nav-item">Servicii<span class="chevron desktop-only"></span></a>
+                <div class="dropdown-menu desktop-only">
+                    <div class="dropdown-content">
+                        <a href="${pathPrefix}servicii/implantologie.html">Implantologie High-Tech</a>
+                        <a href="${pathPrefix}servicii/estetica.html">Estetică Dentară</a>
+                        <a href="${pathPrefix}servicii/orto.html">Ortodonție Invizibilă</a>
+                        <a href="${pathPrefix}servicii/laser.html">Chirurgie Laser</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item-container">
+                <a href="${homeLink}#why-choose-us" class="nav-item">Tehnologie<span class="chevron desktop-only"></span></a>
+                <div class="dropdown-menu desktop-only">
+                    <div class="dropdown-content">
+                        <a href="${homeLink}#why-choose-us">Scanner Intraoral 3D</a>
+                        <a href="${homeLink}#why-choose-us">Tomografie Computerizată</a>
+                        <a href="${homeLink}#why-choose-us">Microscop Zeiss</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item-container">
+                <a href="${homeLink}#despre-noi" class="nav-item">Pacienți<span class="chevron desktop-only"></span></a>
+                <div class="dropdown-menu desktop-only">
+                    <div class="dropdown-content">
+                        <a href="${homeLink}#rezervare">Prima Vizită</a>
+                        <a href="${homeLink}#rezervare">Tarife & Finanțare</a>
+                        <a href="${homeLink}#rezervare">Întrebări Frecvente</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item-container"><a href="${homeLink}#reviewsSlider" class="nav-item">Cazuri Clinice</a></li>
+            <li class="nav-item-container"><a href="${homeLink}#contact" class="nav-item">Contact</a></li>
+        </ul>
+        <a href="${homeLink}#rezervare" class="cta-button desktop-only">
+            REZERVARE
+            <svg width="1rem" height="1rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </a>
+    </div>
+</nav>`;
     // 3. STRUCTURĂ FOOTER (Iconițe SVG Mint incluse)
     const footerHTML = `
     <footer class="premium-footer">
