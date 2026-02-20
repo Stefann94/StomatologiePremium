@@ -1,7 +1,7 @@
 /* --- FUNDAMENT SECȚIUNE --- */
 .why-section {
-    /* Padding-top identic cu About Us pentru consistență vizuală */
-    padding: 5rem 4vw 10rem 4vw;
+    /* Schimbăm de la 5rem top / 10rem bottom la 6rem sus/jos pentru simetrie */
+    padding: 6rem 4vw; 
     background-color: #0F172A;
     font-family: 'Montserrat', sans-serif;
     color: #F8FAFC;

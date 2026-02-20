@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/about.css">
     <link rel="stylesheet" href="css/why-us.css">
     <link rel="stylesheet" href="css/booking.css">
+    <link rel="stylesheet" href="css/reviews.css">
 </head>
 <body style="background-color: #0F172A; margin: 0; overflow-x: hidden;">
 
@@ -246,6 +247,44 @@
     </div>
 </section>
 
+<section class="reviews-reveal-section">
+    <div class="reviews-parallax-container">
+        <div class="reviews-fixed-bg" style="background-image: url('pictures/cabinet4.jpg');"></div>
+        <div class="reviews-overlay"></div>
+
+        <div class="reviews-content-wrapper">
+            <div class="reviews-slider" id="reviewsSlider">
+                <div class="review-slide active">
+                    <div class="quote-icon">“</div>
+                    <p class="review-text">O experiență digitală completă. Am văzut rezultatul final al implantului înainte de a începe procedura. Profesionalism la cel mai înalt nivel.</p>
+                    <h4 class="review-author">Andrei Popescu</h4>
+                    <span class="review-service">Implantologie High-Tech</span>
+                </div>
+
+                <div class="review-slide">
+                    <div class="quote-icon">“</div>
+                    <p class="review-text">Echipa Mint Dent a reușit să îmi elimine frica de dentist. Atmosfera este atât de relaxantă încât uiți că ești într-o clinică.</p>
+                    <h4 class="review-author">Elena Ionescu</h4>
+                    <span class="review-service">Estetică Dentară</span>
+                </div>
+
+                <div class="review-slide">
+                    <div class="quote-icon">“</div>
+                    <p class="review-text">Cea mai modernă clinică din oraș. Tehnologia 3D și atenția la detalii fac diferența. Recomand cu toată încrederea!</p>
+                    <h4 class="review-author">Marius Radu</h4>
+                    <span class="review-service">Control Periodic</span>
+                </div>
+            </div>
+
+            <div class="reviews-dots" id="reviewsDots">
+                <span class="review-dot active" data-index="0"></span>
+                <span class="review-dot" data-index="1"></span>
+                <span class="review-dot" data-index="2"></span>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section id="rezervare" class="booking-section">
     <div class="booking-container">
 <div class="booking-image-side">
@@ -332,5 +371,6 @@
     <script src="js/why-us.js"></script>
     <script src="js/scroll-reveal.js"></script>
     <script src="js/custom-select-serviciu-home.js"></script>
+    <script src="js/reviews.js"></script>
 </body>
 </html>
