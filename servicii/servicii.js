@@ -1,25 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // Animație la scroll pentru carduri
     const revealElements = document.querySelectorAll('[data-reveal]');
     
+    const revealOptions = {
+        threshold: 0.1, // Declanșează când 10% din card e vizibil
+        rootMargin: "0px 0px -50px 0px"
+    };
+
     const revealOnScroll = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = "1";
-                entry.target.style.transform = "translateY(0)";
-                revealOnScroll.unobserve(entry.target);
+                // Adaugă clasa pentru slide up
+                entry.target.classList.add('is-visible');
+            } else {
+                // Dacă vrei ca efectul să se repete DOAR când scroll-ezi înapoi jos,
+                // verificăm dacă elementul este sub viewport (entry.boundingClientRect.top > 0)
+                if (entry.boundingClientRect.top > 0) {
+                    entry.target.classList.remove('is-visible');
+                }
             }
         });
-    }, {
-        threshold: 0.1
-    });
+    }, revealOptions);
 
     revealElements.forEach(el => {
-        el.style.opacity = "0";
-        el.style.transform = "translateY(30px)";
-        el.style.transition = "all 0.8s cubic-bezier(0.22, 1, 0.36, 1)";
         revealOnScroll.observe(el);
     });
-
 });
